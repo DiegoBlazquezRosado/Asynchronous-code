@@ -139,6 +139,7 @@ const fetchGithubUsers = async (userNames) => {
             if (resp.ok) {
                 const data = await resp.json();
                 //arrUserNames.push(data);
+                //console.log(data.name, data.url);
                 return data;
             } else {
                 throw resp;
@@ -148,6 +149,13 @@ const fetchGithubUsers = async (userNames) => {
         }
     });
     const resultado = await Promise.all(arrUserNames);
+    if (resultado) {
+        resultado.forEach((user) => {
+            console.log(user.name, user.url);
+        })
+    } else {
+        console.log('error');
+    }
     return resultado;
 }
 
